@@ -1,40 +1,24 @@
 def cmp_func(x, y):
-    return (x[1] > y[1]) - (x[1] < y[1])
- 
-# Takes text to be transformed and its length as arguments
-# and returns the corresponding suffix array
- 
+    return (x[1] > y[1]) - (x[1] < y[1]) 
  
 def compute_suffix_array(input_text, len_text):
-    # Array of structures to store rotations and their indexes
     suff = [(i, input_text[i:]) for i in range(len_text)]
- 
-    # Sorts rotations using comparison function defined above
+
     suff.sort(key=lambda x: x[1])
- 
-    # Stores the indexes of sorted rotations
+
     suffix_arr = [i for i, _ in suff]
- 
-    # Returns the computed suffix array
+
     return suffix_arr
- 
-# Takes suffix array and its size as arguments
-# and returns the Burrows-Wheeler Transform of given text
  
  
 def find_last_char(input_text, suffix_arr, n):
-    # Iterates over the suffix array to
-    # find the last char of each cyclic rotation
     bwt_arr = ""
     for i in range(n):
-        # Computes the last char which is given by 
-        # input_text[(suffix_arr[i] + n - 1) % n]
         j = suffix_arr[i] - 1
         if j < 0:
             j = j + n
         bwt_arr += input_text[j]
  
-    # Returns the computed Burrows-Wheeler Transform
     return bwt_arr
 
         
@@ -44,10 +28,8 @@ def bwt(input_text):
 
     len_text = len(input_text)
   
-    # Computes the suffix array of our text
     suffix_arr = compute_suffix_array(input_text, len_text)
     
-    # Adds to the output array the last char of each rotation
     return find_last_char(input_text, suffix_arr, len_text)
 
 def ibwt(input_text):
@@ -66,7 +48,7 @@ def ibwt(input_text):
         
 def rl_encode(inp_str):
     red_count = 1 # redundance count. starts at one so to check next letter
-    digit_reps = "ႠႡႢႣႤႥႦႧႨႩ"
+    digit_reps = "ႠႡႢႣႤႥႦႧႨႩ" # Georgian text just in case that digits 0-9 are in original text
     i = 0
     return_str = ""
 
@@ -96,7 +78,7 @@ def rl_encode(inp_str):
     return return_str
         
 def rl_decode(inp_str):
-    digit_reps = "ႠႡႢႣႤႥႦႧႨႩ"
+    digit_reps = "ႠႡႢႣႤႥႦႧႨႩ" # Georgian text just in case that digits 0-9 are in original text
     return_str = ""
     digit_str = ""
     i = 0
