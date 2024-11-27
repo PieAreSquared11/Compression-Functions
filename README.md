@@ -1,4 +1,4 @@
-# The Best Compression Functions
+# One of The Best BWT and RLE Functions
 
 Adds a Burrows Wheeler Transform Function (bwt()), a Run-Length-Encode Function (rl_encode()), a Run-Length Decode Function (rl_decode()), 
 a Burrows Wheeler Inverse Transform Function (ibwt()), a Compression Function (which combines bwt() and rl_encode(), compress()), and a 
